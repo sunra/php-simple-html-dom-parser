@@ -384,8 +384,8 @@ class simple_html_dom_node
             call_user_func_array($this->dom->callback, array($this));
         }
 
-        if (isset($this->_[HDOM_INFO_OUTER])) return $this->_[HDOM_INFO_OUTER];
-        if (isset($this->_[HDOM_INFO_TEXT])) return $this->dom->restore_noise($this->_[HDOM_INFO_TEXT]);
+        if (isset($this->_[HDOM_INFO_OUTER])) return $this->convert_tetxt($this->_[HDOM_INFO_OUTER]);
+        if (isset($this->_[HDOM_INFO_TEXT])) return $this->convert_text($this->dom->restore_noise($this->_[HDOM_INFO_TEXT]));
 
         // render begin tag
         if ($this->dom && $this->dom->nodes[$this->_[HDOM_INFO_BEGIN]])
