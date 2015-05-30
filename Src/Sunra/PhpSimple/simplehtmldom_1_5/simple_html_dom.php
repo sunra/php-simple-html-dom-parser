@@ -116,6 +116,7 @@ class simple_html_dom_node
     public $nodetype = HDOM_TYPE_TEXT;
     public $tag = 'text';
     public $attr = array();
+    /** @var simple_html_dom_node[] $children */
     public $children = array();
     public $nodes = array();
     public $parent = null;
