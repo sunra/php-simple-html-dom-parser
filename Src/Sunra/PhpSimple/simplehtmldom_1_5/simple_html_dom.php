@@ -116,7 +116,6 @@ class simple_html_dom_node
     public $nodetype = HDOM_TYPE_TEXT;
     public $tag = 'text';
     public $attr = array();
-    /** @var simple_html_dom_node[] $children */
     public $children = array();
     public $nodes = array();
     public $parent = null;
@@ -148,6 +147,26 @@ class simple_html_dom_node
         $this->nodes = null;
         $this->parent = null;
         $this->children = null;
+    }
+
+    /**
+     * Get this node's starting (self) index in the html tree
+     * @return mixed int
+     */
+    function getSelfIndex(){
+        return $this->_[HDOM_INFO_BEGIN];
+    }
+
+    /**
+     * Get the index of the last child belonging to this node
+     * @return mixed
+     */
+    function getLastChildIndex(){
+        if (isset($this->_[HDOM_INFO_END])) {
+            return $this->_[HDOM_INFO_END];
+        }else {
+            return $this->getSelfIndex();
+        }
     }
 
     // dump node's tree
@@ -355,8 +374,9 @@ class simple_html_dom_node
         if (isset($this->_[HDOM_INFO_TEXT])) return $this->dom->restore_noise($this->_[HDOM_INFO_TEXT]);
 
         $ret = '';
-        foreach ($this->nodes as $n)
+        foreach ($this->nodes as $n) {
             $ret .= $n->outertext();
+        }
         return $ret;
     }
 
@@ -1036,6 +1056,31 @@ class simple_html_dom
     function __destruct()
     {
         $this->clear();
+    }
+
+    /**
+     * Delete a node and its children recursively
+     *
+     * @param $nodes array Node to be deleted
+     */
+    function deleteNodes($nodes)
+    {
+        foreach ($nodes as $n) {
+            $n->outertext = "";
+        }
+        $this->load($this->save(), true, false);
+    }
+
+    /**
+     * @param $selector string
+     */
+    function deleteNodeBySelector($selector){
+        foreach ($this->find($selector) as $node)
+        {
+            $node->outertext = '';
+        }
+
+        $this->load($this->save());
     }
 
     // load html from string
