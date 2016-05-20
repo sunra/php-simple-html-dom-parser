@@ -65,7 +65,10 @@ define('HDOM_INFO_ENDSPACE',7);
 define('DEFAULT_TARGET_CHARSET', 'UTF-8');
 define('DEFAULT_BR_TEXT', "\r\n");
 define('DEFAULT_SPAN_TEXT', " ");
-define('MAX_FILE_SIZE', 600000);
+if (!defined('MAX_FILE_SIZE'))
+{
+    define('MAX_FILE_SIZE', 600000);
+}
 // helper functions
 // -----------------------------------------------------------------------------
 // get html dom from file
@@ -119,6 +122,7 @@ class simple_html_dom_node
     public $nodetype = HDOM_TYPE_TEXT;
     public $tag = 'text';
     public $attr = array();
+    /** @var simple_html_dom_node[] $children */
     public $children = array();
     public $nodes = array();
     public $parent = null;
