@@ -1,0 +1,5 @@
+/.* export-ignore
+/Src/Sunra/PhpSimple/simplehtmldom_1_5/app export-ignore
+/Src/Sunra/PhpSimple/simplehtmldom_1_5/example export-ignore
+/Src/Sunra/PhpSimple/simplehtmldom_1_5/manual export-ignore
+/Src/Sunra/PhpSimple/simplehtmldom_1_5/testcase export-ignore
