@@ -507,9 +507,9 @@ class simple_html_dom_node
     /**
      * find elements by css selector
      * PaperG - added ability for find to lowercase the value of the selector.
-     * @param string $selector
-     * @param null   $idx
-     * @param bool   $lowercase
+     * @param string   $selector
+     * @param int|null $idx
+     * @param bool     $lowercase
      * @return simple_html_dom_node[]|simple_html_dom_node|null
      */
     function find($selector, $idx=null, $lowercase=false)
