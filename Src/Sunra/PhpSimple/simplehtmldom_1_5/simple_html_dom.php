@@ -131,7 +131,7 @@ class simple_html_dom_node
     public $tag_start = 0;
     private $dom = null;
 
-    function __construct($dom)
+    function __construct(simple_html_dom $dom)
     {
         $this->dom = $dom;
         $dom->nodes[] = $this;
@@ -504,8 +504,14 @@ class simple_html_dom_node
         return $ret . $this->_[HDOM_INFO_ENDSPACE] . '>';
     }
 
-    // find elements by css selector
-    //PaperG - added ability for find to lowercase the value of the selector.
+    /**
+     * find elements by css selector
+     * PaperG - added ability for find to lowercase the value of the selector.
+     * @param string $selector
+     * @param null   $idx
+     * @param bool   $lowercase
+     * @return simple_html_dom_node[]|simple_html_dom_node|null
+     */
     function find($selector, $idx=null, $lowercase=false)
     {
         $selectors = $this->parse_selector($selector);
@@ -977,6 +983,7 @@ class simple_html_dom_node
  */
 class simple_html_dom
 {
+    /** @var simple_html_dom_node $root */
     public $root = null;
     public $nodes = array();
     public $callback = null;
@@ -1724,5 +1731,3 @@ class simple_html_dom
     function getElementsByTagName($name, $idx=-1) {return $this->find($name, $idx);}
     function loadFile() {$args = func_get_args();$this->load_file($args);}
 }
-
-?>
