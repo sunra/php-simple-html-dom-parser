@@ -16,7 +16,8 @@
         }   
     ],
     "require": {
-        "php": ">=5.3.2"        
+        "php": ">=5.3.2",
+        "ext-mbstring": "*"
     },
     "autoload": {
         "psr-0": { "Sunra\\PhpSimple\\HtmlDomParser": "Src/" }
