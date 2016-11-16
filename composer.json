@@ -6,7 +6,8 @@
     "homepage": "https://github.com/sunra/php-simple-html-dom-parser",
     "license": "MIT",
     "authors": [
-        {            
+        {   
+			"name": "S.C. Chen",
             "homepage": "http://sourceforge.net/projects/simplehtmldom/"
         },
         {
