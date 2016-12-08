@@ -952,8 +952,8 @@ class simple_html_dom_node
     }
 
     // camel naming conventions
-    function getAllAttributes() {return $this->attr;}
-    function getAttribute($name) {return $this->__get($name);}
+    function getAllAttributes() {return array_map('html_entity_decode', $this->attr);}
+    function getAttribute($name) {return html_entity_decode($this->__get($name));}
     function setAttribute($name, $value) {$this->__set($name, $value);}
     function hasAttribute($name) {return $this->__isset($name);}
     function removeAttribute($name) {$this->__set($name, null);}
