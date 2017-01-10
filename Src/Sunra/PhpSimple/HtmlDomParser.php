@@ -4,7 +4,7 @@ namespace Sunra\PhpSimple;
 
 require 'simplehtmldom_1_5'.DIRECTORY_SEPARATOR.'simple_html_dom.php';
 
-class HtmlDomParser {
+class HtmlDomParser extends Bundle{
 	
 	/**
 	 * @return \simplehtmldom_1_5\simple_html_dom
