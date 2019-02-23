@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="PHP Simple HTML DOM Parser CSS Selector">
+<meta name="keywords" content="PHP Simple HTML DOM Parser CSS Selector">
+<title>PHP Simple HTML DOM Parser</title>
+<link href="css/default.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/ui.tabs.css" type="text/css" media="print, projection, screen">
+<script type="text/javascript" src="js/jquery-1.2.3.pack.js"></script>
+<script type="text/javascript" src="js/ui.tabs.pack.js"></script>
+<script language="JavaScript" type="text/JavaScript">
+	$(document).ready(function(){
+		$(function() {$('#container-1 > ul').tabs();});
+	});
+</script>
+</head>
+<body>
+<h1>PHP Simple HTML DOM Parser</h1>
+<div id="content">
+  <h2>Description, Requirement &amp; Features</h2>
+  <ul>
+    <li>A HTML DOM parser written in PHP5+ let you manipulate HTML in a very easy way! </li>
+    <li>Require <strong>PHP 5+</strong>.</li>
+    <li>Supports invalid HTML.</li>
+    <li>Find tags on an HTML page with selectors just like <a href="http://jquery.com/">jQuery</a>.</li>
+		<li>Extract contents from HTML in a single line.</li>
+	</ul>
+  <h2>Download &amp; Documents </h2>
+  <ul>
+    <li>Download latest version form <a href="http://sourceforge.net/project/showfiles.php?group_id=218559">Sourceforge</a>.</li>
+    <li>Read <a href="manual.htm">Online Document</a>.</li>
+  </ul>
+  <h2>Quick Start</h2>
+  <div id="container-1">
+    <ul>
+      <li><a href="#fragment-11"><span>How to get HTML elements?</span></a></li>
+      <li><a href="#fragment-12"><span>How to modify HTML elements?</span></a></li>
+      <li><a href="#fragment-13"><span>Extract contents from HTML</span></a></li>
+      <li><a href="#fragment-14"><span>Scraping Slashdot!</span></a></li>
+    </ul>
+    <div id="fragment-11">
+      <div class="code">
+        <span class="comment">// Create DOM from URL or file</span><br>
+        $html = <strong>file_get_html</strong>(<span class="var">'http://www.google.com/'</span>);<br>
+        <br>
+        <span class="comment">// Find all images </span><br>
+        foreach($html-&gt;<strong>find</strong>(<span class="var">'img'</span>) as $element) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo $element-&gt;<strong>src</strong> . <span class="var">'&lt;br&gt;'</span>;<br>
+<br>
+<span class="comment">// Find all links </span><br>
+foreach($html-&gt;<strong>find</strong>(<span class="var">'a'</span>) as $element) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; echo $element-&gt;<strong>href</strong> . <span class="var">'&lt;br&gt;'</span>;      </div>
+    </div>
+    <div id="fragment-12">
+      <div class="code">
+        <span class="comment">// Create DOM from string</span><br>
+        $html = <strong>str_get_html</strong>(<span class="var">'&lt;div id=&quot;hello&quot;&gt;Hello&lt;/div&gt;&lt;div id=&quot;world&quot;&gt;World&lt;/div&gt;'</span>);<span class="comment"><br>
+        <br>
+        </span>
+        
+$html-&gt;<strong>find</strong>(<span class="var">'div', 1</span>)-&gt;<strong>class</strong> = <span class="var">'bar'</span>;<br>
+<br>
+$html-&gt;<strong>find</strong>(<span class="var">'div[id=hello]', 0</span>)-&gt;<strong>innertext</strong> = <span class="var">'foo'</span>;<br>
+        <br>
+        echo $html; <span class="comment">// Output: &lt;div id=&quot;hello&quot;&gt;<strong>foo</strong>&lt;/div&gt;&lt;div id=&quot;world&quot; <strong>class=&quot;bar&quot;</strong>&gt;World&lt;/div&gt;</span> </div>
+    </div>
+    <div id="fragment-13">
+      <div class="code"><br>
+        <span class="comment">// Dump contents (without tags) from HTML</span><br>
+        echo <strong>file_get_html</strong>(<span class="var">'http://www.google.com/'</span>)-&gt;<strong>plaintext</strong>;
+				<br>
+				<br>
+      </div>
+    </div>
+    <div id="fragment-14">
+      <div class="code">
+        <span class="comment">// Create DOM from URL</span><br>
+        $html = <strong>file_get_html</strong>(<span class="var">'http://slashdot.org/'</span>);<br>
+        <br>
+        <span class="comment">// Find all article blocks</span><br>
+        foreach($html-&gt;<strong>find</strong>(<span class="var">'div.article'</span>) as $article) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$item[<span class="var">'title'</span>]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= $article-&gt;<strong>find</strong>(<span class="var">'div.title'</span>, <span class="var">0</span>)-&gt;<strong>plaintext</strong>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$item[<span class="var">'intro'</span>]&nbsp;&nbsp;&nbsp;&nbsp;= $article-&gt;<strong>find</strong>(<span class="var">'div.intro'</span>, <span class="var">0</span>)-&gt;<strong>plaintext</strong>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$item[<span class="var">'details'</span>]&nbsp;= $article-&gt;<strong>find</strong>(<span class="var">'div.details'</span>, <span class="var">0</span>)-&gt;<strong>plaintext</strong>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;$articles[] = $item;<br>
+        }<br>
+        <br>
+        print_r($articles);
+      </div>
+    </div>
+  </div>
+  <h2>Feedback</h2>
+  <ul>
+    <li><a href="http://sourceforge.net/tracker/?group_id=218559&atid=1044040">Feature Request Tracker</a></li>
+    <li><a href="http://sourceforge.net/tracker/?group_id=218559&atid=1044037">Bug Tracking System</a></li>
+    <li><a href="http://sourceforge.net/forum/?group_id=218559">Discussion Forums</a></li>
+    <li><a href="mailto:me578022@users.sourceforge.net">Contact Author</a></li>
+  </ul>
+  <div><br>
+    Author: S.C. Chen (me578022@gmail.com)<br>
+    Original idea is from Jose Solorzano's <a href="http://php-html.sourceforge.net/">HTML Parser for PHP 4</a>. <br>
+    Contributions by: Yousuke Kumakura (Attribute Filters) </div>
+  <p align="center"><a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=218559&amp;type=5" width="210" height="62" border="0" alt="SourceForge.net Logo" /></a> </p>
+</div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-3452027-2");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+</body>
+</html>
+<!--$Rev: 48 $-->
