@@ -21,6 +21,6 @@
         "ext-mbstring": "*"
     },
     "autoload": {
-        "psr-0": { "Sunra\\PhpSimple\\HtmlDomParser": "Src/" }
+        "psr-0": { "Sunra\\PhpSimple\\HtmlDomParser": "src/" }
     }    
 }
