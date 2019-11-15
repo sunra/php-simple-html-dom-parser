@@ -1,14 +1,14 @@
 <?php
 // $Rev: 130 $
 // -----------------------------------------------------------------------------
-error_reporting(E_ALL);
+\error_reporting(E_ALL);
 
 include_once('../../simple_html_dom_reader.php');
 
 $filename = '../html/google.htm';
 
 function dump_memory() {
-    echo 'peak: ' . number_format(memory_get_peak_usage(), 0, '.', ',') . ' bytes, end: ' . number_format(memory_get_usage(), 0, '.', ',') . " bytes<br>";
+    echo 'peak: ' . \number_format(\memory_get_peak_usage(), 0, '.', ',') . ' bytes, end: ' . \number_format(\memory_get_usage(), 0, '.', ',') . " bytes<br>";
 }
 
 function stat_dom($dom) {
@@ -28,57 +28,57 @@ function stat_dom($dom) {
             ++$count_tag_end;
     }
     
-    echo 'Total: '. count($dom->nodes).', Text: '.$count_text.', Commnet: '.$count_comm.', Tag: '.$count_elem.', End Tag: '.$count_tag_end.'<br>';
+    echo 'Total: '. \count($dom->nodes).', Text: '.$count_text.', Commnet: '.$count_comm.', Tag: '.$count_elem.', End Tag: '.$count_tag_end.'<br>';
 }
 
-echo 'init ' . number_format(memory_get_usage(), 0, '.', ',') . " bytes";
+echo 'init ' . \number_format(\memory_get_usage(), 0, '.', ',') . " bytes";
 
 
-echo '<br><br>[load file]<br>init memory: '.number_format(memory_get_usage(), 0, '.', ',').'<br>';
+echo '<br><br>[load file]<br>init memory: '.\number_format(\memory_get_usage(), 0, '.', ',').'<br>';
 echo '------------------------------------------<br>';
-flush();
+\flush();
 for($i=0; $i<3; ++$i) {
-    $str = file_get_contents($filename);
+    $str = \file_get_contents($filename);
     unset($str);
     dump_memory();
 }
-echo 'final: '.number_format(memory_get_usage(), 0, '.', ',').'<br>';
-flush();
+echo 'final: '.\number_format(\memory_get_usage(), 0, '.', ',').'<br>';
+\flush();
 
 
-$str = file_get_contents($filename);
-echo '<br><br>[multi objects str_get_dom clear memory]<br>init memory: '.number_format(memory_get_usage(), 0, '.', ',').'<br>';
+$str = \file_get_contents($filename);
+echo '<br><br>[multi objects str_get_dom clear memory]<br>init memory: '.\number_format(\memory_get_usage(), 0, '.', ',').'<br>';
 echo '------------------------------------------<br>';
-flush();
+\flush();
 for($i=0; $i<3; ++$i) {
     $dom = str_get_dom($str);
     //stat_dom($dom);
     $dom->clear();
     unset($dom);
     dump_memory();
-    flush();
+    \flush();
 }
-echo 'final: '.number_format(memory_get_usage(), 0, '.', ',').'<br>';
-flush();
+echo 'final: '.\number_format(\memory_get_usage(), 0, '.', ',').'<br>';
+\flush();
 
-echo '<br><br>[multi objects file_get_dom clear memory]<br>init memory: '.number_format(memory_get_usage(), 0, '.', ',').'<br>';
+echo '<br><br>[multi objects file_get_dom clear memory]<br>init memory: '.\number_format(\memory_get_usage(), 0, '.', ',').'<br>';
 echo '------------------------------------------<br>';
-flush();
+\flush();
 for($i=0; $i<3; ++$i) {
     $dom = file_get_dom($filename);
     //stat_dom($dom);
     $dom->clear();
     unset($dom);
     dump_memory();
-    flush();
+    \flush();
 }
-echo 'final: '.number_format(memory_get_usage(), 0, '.', ',').'<br>';
-flush();
+echo 'final: '.\number_format(\memory_get_usage(), 0, '.', ',').'<br>';
+\flush();
 
 
-echo '<br><br>[one object]<br>init memory: '.number_format(memory_get_usage(), 0, '.', ',').'<br>';
+echo '<br><br>[one object]<br>init memory: '.\number_format(\memory_get_usage(), 0, '.', ',').'<br>';
 echo '------------------------------------------<br>';
-flush();
+\flush();
 $dom = new simple_html_dom;
 for($i=0; $i<3; ++$i) {
     $dom->load_file($filename);
@@ -86,18 +86,18 @@ for($i=0; $i<3; ++$i) {
     dump_memory();
 }
 unset($dom);
-echo 'final: '.number_format(memory_get_usage(), 0, '.', ',').'<br>';
-flush();
+echo 'final: '.\number_format(\memory_get_usage(), 0, '.', ',').'<br>';
+\flush();
 
 
 
-echo '<br><br>[multi objects without clear memory]<br>init memory: '.number_format(memory_get_usage(), 0, '.', ',').'<br>';
+echo '<br><br>[multi objects without clear memory]<br>init memory: '.\number_format(\memory_get_usage(), 0, '.', ',').'<br>';
 echo '------------------------------------------<br>';
-flush();
+\flush();
 for($i=0; $i<3; ++$i) {
     $dom = file_get_dom($filename);
     dump_memory();
 }
-echo 'final: '.number_format(memory_get_usage(), 0, '.', ',').'<br>';
-flush();
+echo 'final: '.\number_format(\memory_get_usage(), 0, '.', ',').'<br>';
+\flush();
 ?>

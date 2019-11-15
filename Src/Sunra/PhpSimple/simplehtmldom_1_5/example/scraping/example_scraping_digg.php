@@ -8,11 +8,11 @@ function scraping_digg() {
     // get news block
     foreach($html->find('div.news-summary') as $article) {
         // get title
-        $item['title'] = trim($article->find('h3', 0)->plaintext);
+        $item['title'] = \trim($article->find('h3', 0)->plaintext);
         // get details
-        $item['details'] = trim($article->find('p', 0)->plaintext);
+        $item['details'] = \trim($article->find('p', 0)->plaintext);
         // get intro
-        $item['diggs'] = trim($article->find('li a strong', 0)->plaintext);
+        $item['diggs'] = \trim($article->find('li a strong', 0)->plaintext);
 
         $ret[] = $item;
     }
@@ -29,7 +29,7 @@ function scraping_digg() {
 // test it!
 
 // "http://digg.com" will check user_agent header...
-ini_set('user_agent', 'My-Application/2.5');
+\ini_set('user_agent', 'My-Application/2.5');
 
 $ret = scraping_digg();
 

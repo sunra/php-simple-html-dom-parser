@@ -1,6 +1,6 @@
 <?php
 // $Rev: 133 $
-error_reporting(E_ALL);
+\error_reporting(E_ALL);
 
 include_once('../simple_html_dom.php');
 
@@ -9,16 +9,16 @@ $min = 10000;
 $max = 0;
 $count = 20;
 
-$str = file_get_contents('./html/google.htm');
+$str = \file_get_contents('./html/google.htm');
 $html = new simple_html_dom;
 
 for ($i=0; $i<$count; ++$i) {
-    $start = microtime();
+    $start = \microtime();
 
     $html->load($str, false);
 
-    list($eu, $es) = explode(' ', microtime());
-    list($bu, $bs) = explode(' ', $start);
+    list($eu, $es) = \explode(' ', \microtime());
+    list($bu, $bs) = \explode(' ', $start);
 
     $diff = ((float)$eu+(float)$es-(float)$bu-(float)$bs)*1000;
 
@@ -29,7 +29,7 @@ for ($i=0; $i<$count; ++$i) {
         $min = $diff;
 
     $all += $diff;
-    echo sprintf('(%.1f)', $diff).'<br>';
+    echo \sprintf('(%.1f)', $diff).'<br>';
 }
 
 echo '<br>-------------------------<br>';
