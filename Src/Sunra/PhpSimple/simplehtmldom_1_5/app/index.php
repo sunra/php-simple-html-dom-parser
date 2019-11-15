@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL);
+\error_reporting(E_ALL);
 include_once('../simple_html_dom.php');
 
 $html = file_get_html('google.htm');
@@ -43,7 +43,7 @@ function stat_dom($dom) {
             ++$count_unknown;
     }
     
-    echo 'Total: '. count($dom->nodes).
+    echo 'Total: '. \count($dom->nodes).
         ', Text: '.$count_text.
         ', Commnet: '.$count_comm.
         ', Tag: '.$count_elem.
@@ -52,27 +52,27 @@ function stat_dom($dom) {
 }
 
 function dump_my_html_tree($node, $show_attr=true, $deep=0, $last=true) {
-    $count = count($node->nodes);
+    $count = \count($node->nodes);
     if ($count>0) {
         if($last)
-            echo '<li class="expandable lastExpandable"><div class="hitarea expandable-hitarea lastExpandable-hitarea"></div>&lt;<span class="tag">'.htmlspecialchars($node->tag).'</span>';
+            echo '<li class="expandable lastExpandable"><div class="hitarea expandable-hitarea lastExpandable-hitarea"></div>&lt;<span class="tag">'.\htmlspecialchars($node->tag).'</span>';
         else
-            echo '<li class="expandable"><div class="hitarea expandable-hitarea"></div>&lt;<span class="tag">'.htmlspecialchars($node->tag).'</span>';
+            echo '<li class="expandable"><div class="hitarea expandable-hitarea"></div>&lt;<span class="tag">'.\htmlspecialchars($node->tag).'</span>';
     }
     else {
         $laststr = ($last===false) ? '' : ' class="last"';
-        echo '<li'.$laststr.'>&lt;<span class="tag">'.htmlspecialchars($node->tag).'</span>';
+        echo '<li'.$laststr.'>&lt;<span class="tag">'.\htmlspecialchars($node->tag).'</span>';
     }
 
     if ($show_attr) {
         foreach($node->attr as $k=>$v) {
-            echo ' '.htmlspecialchars($k).'="<span class="attr">'.htmlspecialchars($node->$k).'</span>"';
+            echo ' '.\htmlspecialchars($k).'="<span class="attr">'.\htmlspecialchars($node->$k).'</span>"';
         }
     }
     echo '&gt;';
     
     if ($node->tag==='text' || $node->tag==='comment') {
-        echo htmlspecialchars($node->innertext);
+        echo \htmlspecialchars($node->innertext);
         return;
     }
 
@@ -124,7 +124,7 @@ function dump_my_html_tree($node, $show_attr=true, $deep=0, $last=true) {
 	<div id="main">
 	<h4>Simple HTML DOM Test</h4>
     <form name="form1" method="post" action="">
-        find: <input name="query" type="text" size="60" maxlength="60" value="<?=htmlspecialchars($query)?>">
+        find: <input name="query" type="text" size="60" maxlength="60" value="<?=\htmlspecialchars($query)?>">
         <input type="submit" name="Submit" value="Go">
     </form>
     <br>
@@ -133,10 +133,10 @@ function dump_my_html_tree($node, $show_attr=true, $deep=0, $last=true) {
 	<div id="sidetreecontrol"><a href="?#">Collapse All</a> | <a href="?#">Expand All</a></div><br>
 	<ul class="treeview" id="html_tree">
 	    <?
-            ob_start();
+            \ob_start();
             foreach($target as $e)
                 dump_my_html_tree($e, true);
-            ob_end_flush();
+            \ob_end_flush();
         ?>
 	</ul>
 </div>

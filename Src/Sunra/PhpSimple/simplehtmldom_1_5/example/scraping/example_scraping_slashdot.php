@@ -8,9 +8,9 @@ function scraping_slashdot() {
     // get article block
     foreach($html->find('div[id^=firehose-]') as $article) {
         // get title
-        $item['title'] = trim($article->find('a.datitle', 0)->plaintext);
+        $item['title'] = \trim($article->find('a.datitle', 0)->plaintext);
         // get body
-        $item['body'] = trim($article->find('div.body', 0)->plaintext);
+        $item['body'] = \trim($article->find('div.body', 0)->plaintext);
 
         $ret[] = $item;
     }

@@ -1,6 +1,6 @@
 <?php
 // $Rev: 174 $
-error_reporting(E_ALL);
+\error_reporting(E_ALL);
 include_once('../simple_html_dom.php');
 
 $dir = './html/';
@@ -34,35 +34,35 @@ $files = array(
 );
 
 
-echo 'memory: '.memory_get_usage().'<br>';
+echo 'memory: '.\memory_get_usage().'<br>';
 $dom = new simple_html_dom;
 
 foreach($files as $f) {
     // get file from url
-    if($f['url']!='') file_put_contents($dir.$f['name'], file_get_contents($f['url']));
-    else file_put_contents($dir.$f['name'], '');
+    if($f['url']!='') \file_put_contents($dir.$f['name'], \file_get_contents($f['url']));
+    else \file_put_contents($dir.$f['name'], '');
 
-    $start = microtime();
-    $dom->load(file_get_contents($dir.$f['name']), false);
-    list($eu, $es) = explode(' ', microtime());
-    list($bu, $bs) = explode(' ', $start);
-    echo sprintf('(%.1f)', ((float)$eu+(float)$es-(float)$bu-(float)$bs)*1000).'<br>';
+    $start = \microtime();
+    $dom->load(\file_get_contents($dir.$f['name']), false);
+    list($eu, $es) = \explode(' ', \microtime());
+    list($bu, $bs) = \explode(' ', $start);
+    echo \sprintf('(%.1f)', ((float)$eu+(float)$es-(float)$bu-(float)$bs)*1000).'<br>';
     
-    if (file_get_contents($dir.$f['name'])!=$dom->save()) {
+    if (\file_get_contents($dir.$f['name'])!=$dom->save()) {
         echo "[<font color='red'>failed</font>] ".$f['name']."<br>";
         $dom->save($dir.$f['name'].'.error');
     }
     else
         echo "[success] ".$f['name']."<br>";
 
-    echo 'memory: '.memory_get_usage().'<br>';
+    echo 'memory: '.\memory_get_usage().'<br>';
 
-    flush();
-    set_time_limit(0);
+    \flush();
+    \set_time_limit(0);
 }
 
 $dom->clear();
 unset($dom);
-echo '<br>memory: '.memory_get_usage().'<br>';
+echo '<br>memory: '.\memory_get_usage().'<br>';
 
 ?>

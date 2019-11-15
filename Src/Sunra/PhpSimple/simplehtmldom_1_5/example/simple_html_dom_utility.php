@@ -25,7 +25,7 @@ function html_no_comment($url) {
 function find_contains($html, $selector, $keyword, $index=-1) {
     $ret = array();
     foreach ($html->find($selector) as $e) {
-        if (strpos($e->innertext, $keyword)!==false)
+        if (\strpos($e->innertext, $keyword)!==false)
             $ret[] = $e;
     }
 

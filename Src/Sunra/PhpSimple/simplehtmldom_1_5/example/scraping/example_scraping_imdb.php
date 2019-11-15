@@ -25,10 +25,10 @@ function scraping_IMDB($url) {
                 $key = $node->plaintext;
 
             if ($node->tag=='a' && $node->plaintext!='more')
-                $val .= trim(str_replace("\n", '', $node->plaintext));
+                $val .= \trim(\str_replace("\n", '', $node->plaintext));
 
             if ($node->tag=='text')
-                $val .= trim(str_replace("\n", '', $node->plaintext));
+                $val .= \trim(\str_replace("\n", '', $node->plaintext));
         }
 
         $ret[$key] = $val;
