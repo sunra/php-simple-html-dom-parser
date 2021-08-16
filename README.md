@@ -20,7 +20,7 @@ Install
  composer.phar
 ```json
 "require": {
-    "koshkoshka/php-simple-html-dom-parser": "1.5.2"
+    "koshkoshka/php-simple-html-dom-parser": "1.5.3"
     }
 ```
 
