@@ -1,7 +1,7 @@
 php-simple-html-dom-parser
 ==========================
 
-Version 1.5.2
+Version 1.5.3
 
 Adaptation for Composer and PSR-0 of:
 
