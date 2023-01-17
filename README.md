@@ -1,7 +1,8 @@
 php-simple-html-dom-parser
 ==========================
 
-Version 1.5.2
+Version 1.5.3
+Tips: This project is a fork from sunra/php-simple-html-dom-parser.
 
 Adaptation for Composer and PSR-0 of:
 
@@ -20,7 +21,7 @@ Install
  composer.phar
 ```json
 "require": {
-    "lysice/php-simple-html-dom-parser": "1.5.2"
+    "lysice/php-simple-html-dom-parser": "1.5.*"
     }
 ```
 
